@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Anti Spam",
+    "version": "1.0.7",
+    "description": "Primera Extensión para Chrome para evitar spoiler",
+    "browser_action": {
+        "default_title": "Make this page red",
+        "default_icon": "logo.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab"
+    ],
+    "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline'"
+}
