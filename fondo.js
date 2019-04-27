@@ -2,8 +2,7 @@ const saludo = () => {
     console.log("holwis")
 }
 
-
-function init() {
+const init = () =>{
     saludo();
 }
 
