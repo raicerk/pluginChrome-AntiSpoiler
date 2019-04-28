@@ -1,7 +1,13 @@
-const alerta = (nombre) => {
-  alert(`Saludiwis ${nombre}`);
+const alerta = () => {
+
+  let nombre = document.getElementById('txtNombre').value;
+
+  chrome.storage.local.get("nombre", item => {
+    alert(`Saludiwis ${nombre} ${item.nombre}`);
+  });
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('btnPintar').addEventListener('click', alerta.bind(null,"juan"));
+  document.getElementById('btnPintar').addEventListener('click', alerta);
 });
