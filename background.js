@@ -1,13 +1,15 @@
-const alerta = () => {
 
-  let nombre = document.getElementById('txtNombre').value;
-
-  chrome.storage.local.get("nombre", item => {
-    alert(`Saludiwis ${nombre} ${item.nombre}`);
-  });
-
+const guardaPalabras = async (palabra) => {
+  var estado = await save("listaPalabras", palabra);
+  console.log(estado);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('btnPintar').addEventListener('click', alerta);
+$(document).ready(() => {
+
+  $("#listPalabras").append("<li>hooooooo</li>");
+
+  $("#btnPintar").click(() => {
+    guardaPalabras($("#txtNombre").val());
+  });
+
 });

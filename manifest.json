@@ -10,6 +10,8 @@
     },
     "background": {
         "scripts": [
+            "jquery.min.js",
+            "util.js",
             "fondo.js"
         ]
     },
