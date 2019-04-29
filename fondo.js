@@ -1,10 +1,7 @@
-const RescataListaPalabras = () => {
-    chrome.storage.sync.get("listaPalabras", item => {
-        console.log(item);
-    });
-}
+const init = async () => {
 
-const init = () => {
+    var lista = []
+    var dato = await save("ListaPalabras", lista);
 
     /**
      * Funciona cuando se abre una nueva pestaña
@@ -15,13 +12,6 @@ const init = () => {
     }
 
     chrome.tabs.onCreated.addListener(handleCreated);
-
-    $(document).ready(() => {
-
-        $("#btnPintar").click(() => {
-            RescataListaPalabras();
-        });
-    });
 }
 
 init();
@@ -34,7 +24,6 @@ const onUpdatedListener = () => {
     }, x => {
         console.log(x);
     })
-    RescataListaPalabras();
 }
 
 
