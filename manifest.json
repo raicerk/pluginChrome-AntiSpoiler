@@ -10,6 +10,7 @@
     },
     "background": {
         "scripts": [
+            "install.js",
             "jquery.min.js",
             "util.js",
             "fondo.js"
