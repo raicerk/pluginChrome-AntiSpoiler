@@ -10,6 +10,7 @@ const init = async () => {
 const onUpdatedListener = async () => {
 
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+        chrome.tabs.insertCSS(tabs[0].id,{file: "./asset/stylePulento.css"});
         chrome.tabs.executeScript(tabs[0].id,{file: "./util/jquery.min.js"});
         chrome.tabs.executeScript(tabs[0].id,{file: "./util/util.js"});
         chrome.tabs.executeScript(tabs[0].id,{file: "./util/bloquea.js"});

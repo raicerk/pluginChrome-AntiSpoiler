@@ -13,19 +13,23 @@
         "activeTab",
         "storage",
         "<all_urls>",
-        "http://*/*", 
-        "https://*/*", 
+        "http://*/*",
+        "https://*/*",
         "file:///*",
         "<url>"
     ],
     "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval'",
-    "web_accessible_resources": ["background/background.js"],
+    "web_accessible_resources": [
+        "background/background.js",
+        "css/stylePulento.css"
+    ],
     "background": {
         "scripts": [
             "util/jquery.min.js",
             "util/util.js",
             "util/install.js",
-            "background/background.js"
+            "background/background.js",
+            "asset/stylePulento.css"
         ]
     }
 }

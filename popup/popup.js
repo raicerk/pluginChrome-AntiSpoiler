@@ -3,7 +3,7 @@ $(document).ready(async () => {
   lista = await read("ListaPalabras");
 
   lista.forEach(element => {
-    $("#listPalabras").append(`<li>${element}</li>`);
+    $("#listPalabras").append(`<li class='Palabras'>${element}</li>`);
   });
 
   $("#btnPintar").click(async () => {
@@ -15,13 +15,23 @@ $(document).ready(async () => {
     var response = await read("ListaPalabras");
     console.log(response);
     for (item in response) {
-      $("#listPalabras").append(`<li>${response[item]}</li>`);
+      $("#listPalabras").append(`<li class='Palabras'>${response[item]}</li>`);
     }
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-      console.log(tabs);
+      chrome.tabs.insertCSS(tabs[0].id, { file: "./asset/stylePulento.css" });
       chrome.tabs.executeScript(tabs[0].id, { file: "./util/bloquea.js" });
+    });
+  });
+
+  $(document).on("click", ".Palabras", function () {
+    var clickedBtnID = $(this).html();
+    chrome.tabs.query({}, tabs => {
+      for (tab in tabs) {
+        chrome.tabs.executeScript(tab.id, { code: `$(":contains('` + clickedBtnID + `'):not(:has(:contains('` + clickedBtnID + `')))").removeClass('bloqueado')` });
+      }
     });
 
   });
 
 });
+
