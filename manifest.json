@@ -4,21 +4,24 @@
     "version": "1.0.20",
     "description": "Primera Extensión para Chrome para evitar spoiler",
     "browser_action": {
-        "default_title": "Make this page red",
-        "default_icon": "logo.png",
-        "default_popup": "popup.html"
-    },
-    "background": {
-        "scripts": [
-            "install.js",
-            "jquery.min.js",
-            "util.js",
-            "fondo.js"
-        ]
+        "default_title": "Lista Palabras",
+        "default_icon": "asset/logo.png",
+        "default_popup": "popup/popup.html"
     },
     "permissions": [
+        "tabs",
         "activeTab",
-        "storage"
+        "storage",
+        "<all_urls>"
     ],
-    "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval'"
+    "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval'",
+    "web_accessible_resources": ["background/background.js"],
+    "background": {
+        "scripts": [
+            "util/jquery.min.js",
+            "util/util.js",
+            "util/install.js",
+            "background/background.js"
+        ]
+    }
 }
