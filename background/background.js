@@ -17,5 +17,7 @@ const onUpdatedListener = async () => {
 }
 
 chrome.tabs.onActivated.addListener(onUpdatedListener);
+chrome.tabs.onCreated.addListener(onUpdatedListener);
+chrome.tabs.onUpdated.addListener(onUpdatedListener);
 
 init();

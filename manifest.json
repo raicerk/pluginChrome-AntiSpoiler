@@ -12,7 +12,11 @@
         "tabs",
         "activeTab",
         "storage",
-        "<all_urls>"
+        "<all_urls>",
+        "http://*/*", 
+        "https://*/*", 
+        "file:///*",
+        "<url>"
     ],
     "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval'",
     "web_accessible_resources": ["background/background.js"],
