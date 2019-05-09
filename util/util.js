@@ -13,3 +13,21 @@ const save = (key, value) => {
         });
     });
 }
+
+const remove = (key, value) => {
+    return new Promise(async (resolve, reject) => {
+
+        var array = []
+
+        array = await read(key);
+        console.log(array);
+        array.filter(e => e !== value)
+        // chrome.storage.sync.remove(key,()=>{
+        //     resolve("Se elimino correctamente")
+        // });
+        console.log(array);
+        var res = await save(key,array);
+
+        resolve("eliminado correctamente");
+    });
+}
