@@ -27,17 +27,13 @@ $(document).ready(async () => {
     var palabra = $(this).html();
     console.log(palabra)
     $(this).remove();
-    var res = await remove("ListaPalabras",palabra);
+    var res = await remove("ListaPalabras", palabra);
     var kk = await read("ListaPalabras");
-    console.log(res)
-    console.log(kk)
-    console.log(lista)
     chrome.tabs.query({}, tabs => {
       for (tab in tabs) {
-        chrome.tabs.executeScript(tab.id, { code: `$(":contains('` + palabra + `'):not(:has(:contains('` + palabra + `')))").removeClass('bloqueado')` });
+        chrome.tabs.executeScript(tabs[tab].id, { code: `$(":contains('` + palabra + `'):not(:has(:contains('` + palabra + `')))").removeClass('bloqueado')` });
       }
     });
-
   });
 
 });

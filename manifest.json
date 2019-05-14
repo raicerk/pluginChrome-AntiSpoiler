@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Anti Spam",
     "version": "1.0.20",
-    "description": "Primera Extensión para Chrome para evitar spoiler",
+    "description": "Extensión para Chrome para evitar spoiler",
     "browser_action": {
         "default_title": "Lista Palabras",
         "default_icon": "asset/logo.png",
@@ -12,11 +12,7 @@
         "tabs",
         "activeTab",
         "storage",
-        "<all_urls>",
-        "http://*/*",
-        "https://*/*",
-        "file:///*",
-        "<url>"
+        "<all_urls>"
     ],
     "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval'",
     "web_accessible_resources": [
@@ -28,8 +24,7 @@
             "util/jquery.min.js",
             "util/util.js",
             "util/install.js",
-            "background/background.js",
-            "asset/stylePulento.css"
+            "background/background.js"
         ]
     }
 }
