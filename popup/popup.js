@@ -3,7 +3,7 @@ $(document).ready(async () => {
   lista = await read("ListaPalabras");
 
   lista.forEach(element => {
-    $("#listPalabras").append(`<li class='Palabras'>${element}</li>`);
+    document.getElementById("listPalabras").appendChild(`<li class='Palabras'>${element}</li>`);
   });
 
   $("#btnPintar").click(async () => {
@@ -23,7 +23,7 @@ $(document).ready(async () => {
     var response = await read("ListaPalabras");
 
     for (item in response) {
-      $("#listPalabras").append(`<li class='Palabras'>${response[item]}</li>`);
+      document.getElementById("listPalabras").appendChild(`<li class='Palabras'>${response[item]}</li>`);
     }
 
     chrome.tabs.query({
