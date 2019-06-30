@@ -41,28 +41,32 @@ $(document).ready(async () => {
     });
   });
 
-  $(document).on("click", ".Palabras", async function () {
+  document.addEventListener('click', async (event) => {
 
-    var palabra = $(this).html();
+    if (event.target.className == "Palabras") {
+      
+      var palabra = event.target.innerText;
 
-    $(this).remove();
+      event.target.remove();
 
-    lista = lista.filter(item => item !== palabra)
+      lista = lista.filter(item => item !== palabra)
 
-    var res = await remove("ListaPalabras", palabra);
+      var res = await remove("ListaPalabras", palabra);
 
-    var kk = await read("ListaPalabras");
+      var kk = await read("ListaPalabras");
 
-    chrome.tabs.query({}, tabs => {
-      for (tab in tabs) {
-        chrome.tabs.executeScript(tabs[tab].id, {
-          code: `$(":contains('${palabra}'):not(:has(:contains('${palabra}')))").removeClass('bloqueado')`
-        }, () => {
-          console.log(chrome.runtime.lastError)
-        });
-      }
-    });
+      chrome.tabs.query({}, tabs => {
+        for (tab in tabs) {
+          chrome.tabs.executeScript(tabs[tab].id, {
+            code: `$(":contains('${palabra}'):not(:has(:contains('${palabra}')))").removeClass('bloqueado')`
+          }, () => {
+            console.log(chrome.runtime.lastError)
+          });
+        }
+      });
+    }
+
+
   });
-
 });
 
