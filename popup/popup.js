@@ -10,28 +10,56 @@ $(document).ready(async () => {
 
     $("#listPalabras").html("");
 
-    lista.push($("#txtNombre").val())
+    var index = lista.findIndex(x => x == $("#txtNombre").val())
+
+    if (index === -1) {
+      lista.push($("#txtNombre").val())
+    } else {
+      console.log("La palabra ya existe")
+    }
+
     let resultado = await save("ListaPalabras", lista);
+
     var response = await read("ListaPalabras");
-    console.log(response);
+
     for (item in response) {
       $("#listPalabras").append(`<li class='Palabras'>${response[item]}</li>`);
     }
-    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-      chrome.tabs.insertCSS(tabs[0].id, { file: "./asset/stylePulento.css" });
-      chrome.tabs.executeScript(tabs[0].id, { file: "./util/bloquea.js" });
+
+    chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    }, tabs => {
+      chrome.tabs.insertCSS(tabs[0].id, {
+        file: "./asset/stylePulento.css"
+      });
+      chrome.tabs.executeScript(tabs[0].id, {
+        file: "./util/bloquea.js"
+      }, () => {
+        console.log(chrome.runtime.lastError)
+      });
     });
   });
 
   $(document).on("click", ".Palabras", async function () {
+
     var palabra = $(this).html();
-    console.log(palabra)
+
     $(this).remove();
+
+    lista = lista.filter(item => item !== palabra)
+
     var res = await remove("ListaPalabras", palabra);
+
     var kk = await read("ListaPalabras");
+
     chrome.tabs.query({}, tabs => {
       for (tab in tabs) {
-        chrome.tabs.executeScript(tabs[tab].id, { code: `$(":contains('` + palabra + `'):not(:has(:contains('` + palabra + `')))").removeClass('bloqueado')` });
+        chrome.tabs.executeScript(tabs[tab].id, {
+          code: `$(":contains('${palabra}'):not(:has(:contains('${palabra}')))").removeClass('bloqueado')`
+        }, () => {
+          console.log(chrome.runtime.lastError)
+        });
       }
     });
   });
