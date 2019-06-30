@@ -8,12 +8,14 @@ $(document).ready(async () => {
 
   $("#btnPintar").click(async () => {
 
-    $("#listPalabras").html("");
+    var newPalabra = document.getElementById("txtNombre").value;
 
-    var index = lista.findIndex(x => x == $("#txtNombre").val())
+    document.getElementById("listPalabras").innerHTML = "";
+
+    var index = lista.findIndex(x => x == newPalabra)
 
     if (index === -1) {
-      lista.push($("#txtNombre").val())
+      lista.push(newPalabra)
     } else {
       console.log("La palabra ya existe")
     }
