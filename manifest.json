@@ -27,9 +27,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "background/background.js",
         "asset/stylePulento.css",
-        "background/background.html",
         "util/jquery.min.js",
         "util/util.js",
         "util/bloquea.js"
