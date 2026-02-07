@@ -34,6 +34,19 @@ function aplicarBloqueo() {
                 }
             }
         }
+        // Blur para inputs y textareas
+        $("input[type='text'], input[type='search'], input:not([type]), textarea").each(function() {
+            if (!$(this).is(":visible")) return;
+            const valor = (this.value || '').toLowerCase();
+            for (let palabra of res) {
+                if (palabra && valor.includes(palabra.toLowerCase())) {
+                    $(this).addClass("bloqueado");
+                    encontrados++;
+                    console.log(`[AntiSpoiler] Bloqueado en input/textarea: '${palabra}' en`, this, 'Value:', this.value);
+                    break;
+                }
+            }
+        });
         if (encontrados === 0) {
             console.log('[AntiSpoiler] No se encontraron coincidencias para bloquear.');
         }
