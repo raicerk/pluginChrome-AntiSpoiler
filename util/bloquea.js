@@ -60,6 +60,13 @@ if (document.readyState === 'loading') {
     aplicarBloqueo();
 }
 
+// MutationObserver para detectar cambios dinámicos en el DOM (SPAs)
+const observer = new MutationObserver((mutationsList, observer) => {
+    // Se puede optimizar para no ejecutar en cada cambio menor, pero para robustez aplicamos siempre
+    aplicarBloqueo();
+});
+observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
 // Escuchar mensajes desde el popup para volver a aplicar el bloqueo
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "aplicarBloqueo") {
