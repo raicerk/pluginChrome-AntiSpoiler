@@ -1,37 +1,51 @@
 {
-    "manifest_version": 2,
-    "name": "Anti Spam",
-    "version": "1.0.20",
-    "description": "Extensión para Chrome para evitar spoiler",
-    "icons": {
-        "16": "asset/logo.png",
-        "48": "asset/logo.png",
-        "128": "asset/logo.png"
-    },
-    "browser_action": {
-        "default_title": "Lista Palabras",
-        "default_icon": "./asset/logo.png",
-        "default_popup": "./popup/popup.html"
-    },
-    "permissions": [
-        "tabs",
-        "activeTab",
-        "storage",
-        "<all_urls>"
-    ],
-    "content_security_policy": "object-src 'none'; script-src 'self' 'unsafe-eval'",
-    "web_accessible_resources": [
+  "manifest_version": 3,
+  "name": "Anti Spam",
+  "version": "1.0.20",
+  "description": "Extensión para Chrome para evitar spoiler",
+  "icons": {
+    "16": "asset/logo.png",
+    "48": "asset/logo.png",
+    "128": "asset/logo.png"
+  },
+  "action": {
+    "default_title": "Lista Palabras",
+    "default_icon": "asset/logo.png",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
         "background/background.js",
-        "css/stylePulento.css",
-        "background/background.html"
-    ],
-    "background": {
-        "persistent": false,
-        "scripts": [
-            "util/jquery.min.js",
-            "util/util.js",
-            "util/install.js",
-            "background/background.js"
-        ]
+        "asset/stylePulento.css",
+        "background/background.html",
+        "util/jquery.min.js",
+        "util/util.js",
+        "util/bloquea.js"
+      ],
+      "matches": ["<all_urls>"]
     }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "util/jquery.min.js",
+        "util/util.js",
+        "util/bloquea.js"
+      ],
+      "css": ["asset/stylePulento.css"]
+    }
+  ]
 }
